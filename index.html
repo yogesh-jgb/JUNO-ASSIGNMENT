@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.25">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <title>Frontend JUNO-ASSIGNMENT</title>
+    <script src="https://kit.fontawesome.com/8b8a7b50c9.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="sidebar">
+                <div class="logo"><img src="image 1.png" alt="User Image"></div>
+                <nav>
+                    <ul>
+                        <li><a class="a2" href="#">Overview</a></li>
+                        <li><a class="a2" href="#">Onboarding</a></li>
+                        <li><a class="a2" id="uni" href="#">Monitoring</a></li>
+                        <li><a class="a2" href="#">Flagging</a></li>
+                        <li><a class="a2" href="#">Source of Income</a></li>
+                        <li><a class="a2" href="#">UAR</a></li>
+                    </ul>
+                </nav>
+                <div class="user-profile">
+                    <img src="Avatar.png" alt="User Image">
+                    <div class="user-info">
+                        <p>Elon Musk</p>
+                        <p>elon@twitter.com</p>
+                    </div>
+                </div>
+            </div>
+            <h1 class="monitor">Monitoring</h1>
+            <div class="header">
+                <div class="status-buttons">
+                    <ul>
+                        <li id="pon"><a class="active" style="margin-top:1000px;">Pending</a></li>
+                        <li id="comp"><a class="com">Completed</a></li>
+                    </ul>
+                    <button onclick="openPopup()" class="close-account-button"><i id="crossed" class="fa-regular fa-circle-xmark"></i>&nbsp;&nbsp;Close Account</button>
+                </div>
+            </div>
+            <div class="search-container">
+                <div class="search-box">
+                    <i  id="ic" class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" class="srch" placeholder="Search">
+                </div>
+                <div class="buttons">
+                    <div class="dropdown">
+                        <button class="dropbtn">Trigger reason <i id="trig1" class="fa fa-chevron-down" onclick="toggleIcon()"></i></button>
+                        <div id="dropdownContent" class="dropdown-content button1">
+                            <a href="#">Hard Flag</a>
+                            <a href="#">Temp Flag</a>
+                            <a href="#">Restricted Unflag</a>
+                            <a href="#">Un flag</a>
+                            <a href="#">Reviewed</a>
+                        </div>
+                    </div>
+                    <div class="dropdown button2">
+                        <button class="dropbtn">Risk Level <i id="risk1" class="fa fa-chevron-down" onclick="toggleIcon1()"></i></button>
+                        <div id="dropdownContent1" class="dropdown-content">
+                            <a href="#" id="allBtn">All</a>
+                            <a href="#" id="lowbtn">Low</a>
+                            <a href="#" id="mediumbtn">Medium</a>
+                            <a href="#" id="hardbtn">High</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-responsive">
+            <table id="mytable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th class="us1" scope="col"><div class="title-col"><span>User</span></div></th>    
+                        <th class="risk" scope="col"><div class="title-col"><span>Risk Level</span><span> <img src="chevrons-up-down.svg" alt=""></span></div></th>
+                        <th class="trig" scope="col"><div class="title-col"><span>Trigger Reason</span></div></th>
+                        <th class="queue" scope="col"><div class="title-col"><span>In queue for</span><span><img src="chevrons-up-down.svg" alt=""></span></div></th>
+                        <th class="date" scope="col"><div class="title-col"><span>Date Added On</span><span> <img src="chevrons-up-down.svg" alt=""></span></div></th>
+                        <th class="previous" scope="col"><div class="title-col"><span>Previously Reviewed</span></div></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="noDataFound" style="display: none; margin-top:20px; margin-left:10px;">No Data Found</div>
+        </div>
+       
+        <div id="overlay" class="overlay">
+            <div id="popup" class="popup">
+                <form action="/close-account" id="myform" method="post" class="frm">
+                    <h2 class="closed">Close Account<i  id="ico" class="fa-solid fa-xmark" onclick="closePopup()" style="margin-left: 299px;"></i></h2>
+                    <label for="email" class="emy">Email</label>
+                    <input type="email" id="email" required>
+                      <div class="checkbox-container">
+                          <p class="UAR">Want to file UAR:</p>
+                          <input type="radio" id="option1" class="op1" name="rad" value="Yes">
+                          <label for="option1" class="op2">Yes</label>
+                          <input type="radio" id="option2" class="op3" name="rad" value="No">
+                          <label for="option2" class="op4">No</label>
+                      </div>
+                      <label for="reason" class="res">Reason</label>
+                <select id="reason" required>
+                    <option value="1"></option>
+                    <option value="2">Flagging logics triggered</option>
+                    <option value="3">IP Change</option>
+                    <option value="4">SOI Requested</option>
+                    <option value="other">Other (please specify in the note below)</option>
+                </select>
+
+                <label for="note" class="notes">Note (optional):</label>
+                <textarea id="note" rows="2"></textarea>
+                <div class="charges">
+                    <div class="rand">
+                        <input type="radio" id="close-fee" min="0" required>
+                        <span class="fee">Charge Closure Fee</span>
+                    </div>
+                    <button type="submit" id="btn" class="btn btn-danger" style="margin-left: 211px;">Close Account</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
